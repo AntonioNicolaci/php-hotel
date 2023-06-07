@@ -46,34 +46,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOOLing.com</title>
+    <link rel="stylesheet" href="style.scss">
 </head>
 <body>
-    <div>
-    <?php 
-        foreach ($hotels as $hotel => $value) {
-            foreach ($value as $key => $h) {
-                    if ($key == 'name') {
-                        echo "<h2>Nome dell'Hotel: ". $h. "</h2>";
-                    } elseif ($key == "description") {
-                        echo "<h5>Descrizione: ". $h. "</h5>";
-                    } elseif ($key == "parking") {
-                        echo "<h5>";
-                        if ($h == true) {
-                            echo "E' presente parcheggio";
+    <div id="table">
+        <div class="col">
+            <span class="row"><p>Nome dell'Hotel</P></span>
+            <span class="row"><p>Descrizione</P></span>
+            <span class="row"><p>Parcheggio</P></span>
+            <span class="row"><p>Voto</P></span>
+            <span class="row"><p>Distanza dal centro</P></span>
+        </div>
+            <?php 
+                foreach ($hotels as $hotel => $value) {
+                    echo '<div class="col">';
+                    foreach ($value as $key => $h) {
+                            if ($key == 'name') {
+                                echo "<span class='row'><span>". $h. "</span></span>";
+                            } elseif ($key == "description") {
+                                echo "<span class='row'><p>". $h. "</p></span>";
+                            } elseif ($key == "parking") {
+                                echo "<span class='row'>";
+                                if ($h == true) {
+                                    echo "<p style='color: green'>Presente</p>";
+                                }
+                                else {
+                                    echo "<p style='color: red'>Non presente</p>";
+                                }
+                                echo  "</span>";
+                            } elseif ($key == "vote") {
+                                echo "<span class='row'><p>". $h. "</p></span>";
+                            } elseif ($key == "distance_to_center") {
+                                echo "<span class='row'><p>". $h. "</p></span>";
+                            }
                         }
-                        else {
-                            echo "Non è presente parcheggio";
-                        }
-                        echo  "</h5>";
-                        echo "<h5>". $h. "</h5>";
-                    } elseif ($key == "vote") {
-                        echo "<h5>Voto dell'hotel: ". $h. "</h5>";
-                    } elseif ($key == "distance_to_center") {
-                        echo "<h5>Distanza dal centro: ". $h. "</h5>";
+                        echo '</div>';
                     }
-                }
-            }
-    ?>    
+            ?>
+        
     </div>
     
 </body>
